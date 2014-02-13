@@ -1,9 +1,10 @@
 <?php
-include 'root.php';
+include_once ('root.php');
 /*using relative path*/
+/*
 require_once($ROOT.'lib/lib_com.php');
 $db = new db;
-$auth=0;
+$auth=0;*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
@@ -25,6 +26,7 @@ $auth=0;
 		<div class="cont">
 			<div id="feedback">
 <?php
+/*
 if (isset($_POST['usr']) && isset($_POST['pass']))
 { 
 
@@ -51,7 +53,7 @@ if (isset($_POST['usr']) && isset($_POST['pass']))
 	}
 	unset($_POST['usr']);
 }
-
+*/
 
 ?>
 			
