@@ -1,0 +1,33 @@
+*********************************************************************FILES********************************************************************
+COMMON FILES
+	1. db.php --> this file contains function which connects to the primary database and returns a resource link, on failure reporrts and error.
+	2. lib.php --> this file contains a  list of all the included files to bundle them all together when including in any single php file to make the inclusion easier.
+	3. errormod.php --> receives an error code from any page or module and excutes an appropriate error message in its own page. It shoud be used when errors are displayed on seperate pages only.
+DATABASES
+	1.	pole --> contains data on projects, members, their relationship and all details about the whole system. Presently the primary and only database.
+MODULES
+	PROJECT BOX
+			project.php -->called on the initiation of the click of a project link. Makes a call to the display functions of the appropriate project.
+			COMMON
+				1. fns_project.php --> holds basic functions performed on projects and used by every action based on the project box module.
+				2. display_basic_page.php --> contains functions that structure the basic features of every page. It is specific to the project box module owing to its specificity.
+				
+				
+SCRIPTS
+
+CSS
+	1. basic.css -->this file contains the basic styling commands of the basic page that has been developed so far.
+MISC
+	1. index.php --> basic file which shows home page along with the list of projects, makes a call to the display function in fns_project.php
+************************************************************************************************************************************************
+
+	index.php -> [Projects module]
+				  -project_list.php
+				  -project_box.php
+				  
+			  -> [Members module]
+				  -
+				  
+	Common Files -> [Common Modules]
+					  -common_obj.php [session control,Operation Validator, Error Manager, DB_manager]
+					  
