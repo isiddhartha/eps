@@ -1,11 +1,16 @@
 <?php
-/*LOGOUT script--used by all pages as a included function to logout and view the front page*/
+//16/02/2014
+//Siddhartha C
+/*script is used to logout a user*/
+//will need modification and advanced detection systems 
+session_start();
+if(isset($_SESSION['user']))
+{	
 
-if(isset($_SESSION['logged']))
-{session_destroy();
-header('location:project/project_list.php');
+	$_SESSION['user']=NULL;
+	session_destroy();
+	
 }
-else
-{echo 'You are already logged out';
-}
+
+header('location:/project/index.php');
 ?>

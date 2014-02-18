@@ -1,0 +1,10 @@
+.header{position:relative; height :80px; width:100%; min-width:799px;  background:#04B45F; border-bottom:2px solid #04945F;}
+#logo{position:relative; display:inline-block; float:left; width:200px;  height:70px; padding-top:4px; padding-left:5px; }
+#logo a{text-decoration:none;  font:50px 'century gothic'; color:#FFF;}
+
+.log{position:relative;  padding-top:10px; display:inline-block; float:right; width:400px; height:70px;  text-align:right; padding-right:10px;  }
+.log input{height: 25px; width:150px; border-radius:3px; border:none;}
+.log .small_but{ height:30px; width:60px; background:#04A45F; color:#FFF; border:1px solid #04945F; border-radius:3px; cursor:pointer;}
+.small_but:hover{background:#04B45F;}
+.log a{color:#DDD; font:16px calibri;}
+.log .greet{ text-decoration:none; color:#04644F; font: 20px calibri; margin-right:10px;}

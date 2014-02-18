@@ -1,7 +1,9 @@
 <?php
 
 class errormod
-{	var $msg;
+{	
+
+	var $msg;
 	var $arg;
 	
 	

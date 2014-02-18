@@ -1,9 +1,0 @@
-<style type=text/css>
-form}{display:inline;}
-</style>
-<div id="search">
-<form action="search.php" method="post> 
-<input type="text" name="srch_value">
-<input type="submit" value="">
-</form>
-</div>
