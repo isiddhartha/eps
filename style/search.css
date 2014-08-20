@@ -1,0 +1,7 @@
+.search{position:relative; float:right; width:300px; height:100%; padding-right:10px; text-align:right;}
+	.search form{height:90%; width:100%;}
+	.search input{width:225px; height:25px; border-radius:3px; border:none; border: 1px solid #04945F;}
+	.search .small_but{width:60px; height:30px; background:#04A45F; color:#FFF; border:1px solid #04945F; cursor:pointer; text-shadow:1px 1px  2px #111;}
+	.search .small_but:hover{background:#04B45F;}
+
+		

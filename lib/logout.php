@@ -12,5 +12,5 @@ if(isset($_SESSION['user']))
 	
 }
 
-header('location:/project/index.php');
+header('location:/explore.php');
 ?>

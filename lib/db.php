@@ -8,15 +8,35 @@
 	define('DB','pole');
 //	define('DB','a4833237_pole');	//uncomment when used in webhost
 
-function get_db()
+
+//change db into a class<--
+class db
 {
-	$db=new mysqli(HOST,USER,PASSWORD,DB) or die($error=new errormod(1)) ;
-			if ($db->connect_errno)
-			{	
-				$error = new errormod(1);
-				exit();
-			}
-			else
-			return $db;
+	private $resDb;
+	function __construct()
+	{
+		$this->connect();
+	}
+	
+	private function connect()
+	{
+	@ $this->resDb = new mysqli(HOST,USER,PASSWORD,DB) or die($error=new errormod('db_connect')) ;
+				if ($this->resDb->connect_errno)
+				{	
+					$error = new errormod('db_connect');
+					exit();
+				}
+				
+	}
+	
+	public function getDb()
+	{
+		if(isset($this->resDb))
+		{
+			return $this->resDb;
+		}
+		else
+		errormod('db_drop');
+	}
 }
 ?>

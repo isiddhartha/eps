@@ -1,14 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head>
 
 <?php
-	require_once ('../root.php');
-	$ROOT = get_root();
+	//code to include config file and dependency scripts
+	require_once ('config.php');
+	$rootobj = new config();
+	$ROOT = $rootobj->ROOT;
 	include_once ($ROOT.'project/lib/lib.php'); //call to the lib.php file to include all dependencies for this page
+	
+	//include session authentication code<--
 	session_start();
 	
 ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="keywords" content="project colloboration, project management, epselon, project host, event colloboration, event management "/>
 	<meta name="description" content="Epselon is an online colloboration and project management application, which allows people around the world to host projects or events and to colloborate with each other.
@@ -16,7 +21,7 @@
 	<title>EPSELON|Explore</title>
 	<link rel="shortcut icon" href="img/icon.png"/>
 	<link rel="stylesheet" href="/project/style/explore.css" type="text/css" media="screen" charset="utf-8"/>
-	<link rel="stylesheet" href="style/grid.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="/project/style/grid.css" type="text/css" media="screen" charset="utf-8" />
 	<script type="text/javascript"  src="/scripts/jQuery.js"></script>
 	<script type="text/javascript"  src="/project/scripts/explore.js"></script>
 </head>
@@ -24,14 +29,15 @@
 <body>
 	<div class="wrapper">
 		<?php
-
-			display_header(); 
+			$header = new header();
+			$header->displayHeader(); 
 		?>	
 		
 		<div class="nav">
 		<?php
-			display_nav();
-			display_search();
+			$nav = new nav();
+			$nav->displayNav();
+			displaySearch();
 		?>
 		</div>
 		
@@ -57,7 +63,8 @@
 						$proj_vis = array();
 						$proj_img = array();
 						$proj_desc=array();
-						$db = get_db();
+						$db = new db();
+						$db = $db->getDb();
 						if ($db)
 						{
 							$query="select * from project";
@@ -102,9 +109,9 @@
 					function fill($x)
 					{
 						$cont;
-						$cont='<a class="proj_cell" href="project.php?proj_id='.$this->full_list['id'][$x].'&&edit=0">
+						$cont='<a class="proj_cell" href="project.php?proj_id='.$this->full_list['id'][$x].'">
 									<div class="in">
-										<img src="data/proj'.$this->full_list['id'][$x].'/images/'.$this->full_list['img'][$x].'"/>
+										<img src="/project/data/proj'.$this->full_list['id'][$x].'/images/'.$this->full_list['img'][$x].'"/>
 										<div class="title">
 											<h2>'.$this->full_list['title'][$x].'</h2>
 										</div>
@@ -154,7 +161,8 @@
 		</div>
 
 		<?php
-		display_footer();
+		$footer = new footer;
+		$footer->displayFooter();
 
 		?>
 	</div>

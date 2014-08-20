@@ -2,11 +2,12 @@
 function show_menu(x)
 {	
 	var menu = $(x).find('.menu')
-	$(menu).stop().slideDown();
+	$(menu).stop().slideDown('fast');
 }
 
 function hide_menu(y)
-{
+{	
+	
 	$('.nav .tabs .tab .menu').stop().slideUp('fast');
 }
 

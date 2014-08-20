@@ -2,13 +2,15 @@
 /* post the username and password to this script and it will authenticate the user*/
 if (!isset($ROOT))
 {
-	include_once ('../root.php');
-	$ROOT = get_root();
+	require_once ('../config.php');
+	$rootobj = new config();
+	$ROOT = $rootobj->ROOT;
 }
 
 include_once($ROOT.'lib/lib_com.php');
 
-$db = get_db();
+$db = new db();
+$db = $db->getDb();
 
 if (isset($_POST['usr']) && isset($_POST['pass']) &&isset($db))
 	{ 
@@ -25,7 +27,7 @@ if (isset($_POST['usr']) && isset($_POST['pass']) &&isset($db))
 			$_SESSION['logged']=1;
 			$_SESSION['user']=$row['username'];
 			$_SESSION['error']=NULL;
-			header('location:/project/index.php');
+			header('location:/explore.php');
 			}
 			else
 			{

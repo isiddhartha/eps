@@ -3,8 +3,10 @@
 <head>
 
 <?php
-	require_once ('root.php');
-	$ROOT = get_root();
+	//loads config file
+	require_once ('config.php');
+	$rootobj = new config();
+	$ROOT = $rootobj->ROOT;
 ?>
 
 
@@ -22,7 +24,7 @@
 <body>
 	<div id="wrapper">
 		<div class="head">
-		epselon
+		<img src="/img/logo.png" alt = "epselon"/>
 		</div>
 		<div class="cont">
 			<div class="box">
@@ -53,7 +55,7 @@
 					Would You like to join us?<a href="register.php">Register</a>
 				</div>
 			</div>
-			<div class="explore"><a href="project/">EXPLORE</a></div>
+			<div class="explore"><a href="explore.php">EXPLORE</a></div>
 		</div>
 	</div>
 </body>

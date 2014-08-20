@@ -1,0 +1,18 @@
+.header{position:relative; height :80px; width:100%; min-width:800px;  background:#04B45F; border-bottom:2px solid #04945F;}
+#logo{position:relative;  float:left; width:140px;  height:75px; padding-top:1px; padding-left:20px; }
+#logo a{text-decoration:none;  font:50px 'century gothic'; color:#FFF;}
+#logo img{width:170px; height:80px;}
+
+
+.user_int{position:relative; width:420px; float:right; height:80px; text-align:right;}
+.log{padding-top:10px; width:400px; height:30px;  text-align:right; padding-right:10px;  }
+.log input{height: 25px; width:150px; border-radius:3px; border:none;}
+.log .small_but{ height:30px; width:60px; background:#04A45F; color:#FFF; border:1px solid #04945F; border-radius:3px; text-shadow:1px 1px  2px #111; cursor:pointer;}
+.small_but:hover{background:#04B45F;}
+.log a{color:#DDD; font:16px calibri;}
+.log .greet{ text-decoration:none; color:#04644F; font: 20px calibri; margin-right:10px;}
+
+.notifications {position:relative; width:400px; padding-right:10px; text-align:left; height:20px; padding-top:20px;}
+.notifications .user_but {display:inline-block; width:70px; height:15px; font:12px calibri; margin-left:5px;  text-align:center; background:#04A45F; color:#FFF; 
+border:1px solid #04945F; border-radius:3px; text-shadow:1px 1px  2px #111; cursor:pointer;}
+.notifications .user_but:hover{background:#04B45F;}

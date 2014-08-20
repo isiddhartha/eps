@@ -1,5 +1,7 @@
 <?php
-	function display_nav()
+class nav
+{
+	public function displayNav()
 	{
 ?>		
 		<script type="text/javascript"  src="/project/scripts/nav.js"></script>
@@ -27,10 +29,10 @@
 			
 			.menu .grp{height:300px;  float:left; text-align:left; border-right:1px dashed #DDD; }
 				.menu .grp .videos{height:150px; }
-					.menu .grp .med{margin:0 5px; height:100px; width:180px; }
+					.menu .grp .med{margin:0 5px; height:75px; width:100px; }
 					/*.menu .grp .med:hover{color:#FFF;}*/
 				.menu .grp .pod{height:150px; width:200px;}
-			.menu .feature{height:300px; width:100px; float:left; text-align:left; margin-left:20px;}
+			.menu .feature{height:300px; width:200px; float:left; text-align:left; margin-left:20px;}
 				
 		</style>
 			
@@ -80,7 +82,7 @@
 					<div class="grp">
 						<div class="videos">
 							<h3>Videos</h3>
-							<iframe class="med"  src="//www.youtube.com/embed/HIN4JB66_Kg?rel=0" frameborder="0" allowfullscreen></iframe>
+							<!--<iframe class="med"  src="//www.youtube.com/embed/HIN4JB66_Kg?rel=0" frameborder="0" allowfullscreen></iframe>-->
 							
 						</div>
 						<div class="pod">
@@ -103,4 +105,5 @@
 	
 <?php
 	}
+}
 ?>
