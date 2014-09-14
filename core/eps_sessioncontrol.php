@@ -5,29 +5,30 @@
 Known Issues:
 1. session control does not login with cookies disabled
 */
-class sessionControl
+class eps_sessionControl extends eps_base
 {
-	private $db;
+/*	private $db;
 	private $dbObj;
-	private $rootobj;
-	private $ROOT;
-	private $error;
+//	private $rootobj;
+//	private $ROOT;*/
+	private $errorCode;
 	protected $authLevel;
-
-	
-	public $sessionStatus;
+	public $status;
 
 /**************************************************************************************************/
 	
 	public function __construct()
 	{
-		$this->sessionStatus = 0;
-		$this->error =0;
+		$this->status = FALSE;
+		$this->errorCode =0;
+		parent::initializeCore();
+	/*	global $eps_db;
+		global $eps_error;*/
 		
-		$this->dbObj = new db();
-		$this->db = $this->dbObj->getDb();	//makes connection to database
-		$this->rootobj = new config();	
-		$this->ROOT = $this->rootobj->ROOT; //retrieves root path
+//		$this->db = $eps_db->getDB();
+//		$this->db = $this->dbObj->getDb();	//makes connection to database
+//		$this->rootobj = new config();	
+//		$this->ROOT = $this->rootobj->ROOT; //retrieves root path
 		
 		if(!isset($_SESSION)) //just a condition to start session if it has not been started 
 							  //externally by the main script
@@ -50,10 +51,10 @@ class sessionControl
 		}
 		else
 		{
-			$this->error = 50;
+			$this->errorCode = 50;
 		}
-		$this->errorhandler($this->error);
-		$this->sessionStatus = 1;
+		$this->errorhandler($this->errorCode);
+		$this->status = TRUE;
 	}
 
 /**************************************************************************************************/
@@ -74,7 +75,7 @@ class sessionControl
 			}
 			else
 			{
-				$this->error = 1;
+				$this->errorCode = 1;
 				$_SESSION['error']=1;
 				$_SESSION['logged'] =0;
 				$this->redirect('default');
@@ -108,7 +109,7 @@ class sessionControl
 		}
 		else 
 		{
-			$this->error= 1;
+			$this->errorCode= 1;
 		}
 		
 		$chkquery = "select * from current_users where user_id ='". $res['user_id']."'";
@@ -232,17 +233,17 @@ class sessionControl
 						}
 						else
 						{
-							$this->error = 2; 
+							$this->errorCode = 2; 
 						}
 					}
 					else
 					{
-						$this->error=2; 
+						$this->errorCode=2; 
 					}
 				}
 				else
 				{	
-					$this->error = 2;
+					$this->errorCode = 2;
 				}
 			}
 			else
@@ -267,7 +268,7 @@ class sessionControl
 		}
 		else
 		{
-			$link = $ROOT.$link;
+			$link = '/index.php/'.$link;
 			header('Location: http://localhost'.$link);
 		}
 	}

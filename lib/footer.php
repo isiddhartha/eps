@@ -13,7 +13,7 @@ class footer
 
 	public function displayFooter()
 	{
-		echo '<link rel="stylesheet" href="/style/footer.css" type="text/css" media="screen" charset="utf-8" />';
+		echo '<link rel="stylesheet" href="/styles/footer.css" type="text/css" media="screen" charset="utf-8" />';
 		echo '<div class="footer">';
 		echo 'Footer';
 		echo '</div>';

@@ -12,26 +12,26 @@ class header
 		
 		//hand over control to calling script
 		
-		$this->curFile = __FILE__;
-		echo $this->curFile;
+		$this->curFile = $_SERVER['PHP_SELF'];
 	}
 	
 	public function displayHeader() //Function to display banner. It can take parameters from the calling function to set up the banner.
 	{	
 		echo '<div class="header">
-			 <link rel="stylesheet" href="/style/header.css" type="text/css" media="screen" charset="utf-8"/>
+			 <link rel="stylesheet" href="/styles/header.css" type="text/css" media="screen" charset="utf-8"/>
 			 <div id="logo"><a href="/project/index.php?sort=normal"><img src="/img/logo.png" alt="epselon" /></a></div>';
 		
 		
 		echo '<div class="user_int">';
-			if(isset($_SESSION['user']))
+			if(isset($_SESSION['logged']) && $_SESSION['logged'] == 1)
 			{
 				echo '<div class="log">';
-				echo '<a class = "greet" href="#">'.$_SESSION['user'].'</a><a href="/lib/logout.php">logout</a>';
+				echo '<a class = "greet" href="#">'.$_SESSION['name'].'</a><form class ="logout" action = "'.$this->curFile.'" method= "post"><input class = "small_but" type="submit" name= "logout" value="logout"/></form>';
 				echo '</div>';
 				echo '<div class="notifications">';
 				echo '<div class ="user_but">Messages</div><div class="user_but">Alerts</div><div class="user_but">Reminders</div>';
 				echo '</div>';
+				
 			}
 			else
 			{
@@ -41,6 +41,11 @@ class header
 						<input type="password" name="pass" placeholder="PASSWORD"/>
 						<input type="submit" class="small_but" value ="Login"/>
 						</form>';
+				if (isset($_SESSION['error']) && $_SESSION['error']==1)
+				{
+					echo "Incorrect username/passwrod";
+					$_SESSION['error'] = 0;
+				}
 				echo '</div>';
 			}
 		echo '</div>';

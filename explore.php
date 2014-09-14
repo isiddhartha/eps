@@ -8,7 +8,7 @@
 	include_once ($ROOT.'project/lib/lib.php'); //call to the lib.php file to include all dependencies for this page
 	
 	//include session authentication code<--
-	session_start();
+	$session = new sessionControl();
 	
 ?>
 

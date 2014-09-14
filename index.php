@@ -1,64 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head>
-
 <?php
-	//loads config file
-	require_once ('config.php');
-	$rootobj = new config();
-	$ROOT = $rootobj->ROOT;
+/*
+SCRIPT NAME		:	index.php
+AUTHOR			:	Siddhartha Chandrasekar
+CREATED			:	06/09/2014
+LOCATION		:	public folder of server -> www
+DESCRIPTION		:	This script will be loaded first for any page request to the site, access to any 
+					other script in the public folder will be denied. The script will load all the 
+					necessary classes and render the requested page.
+*/
+
+
+/*
+These variables set the folder structure of the public folder in the server. The variables are 
+assigned the names to ease future alteration of folder structure.
+*/
+error_reporting(E_ALL);
+
+$corePath = 'core/';
+$libPath = 'lib/';
+$jsPath = 'js/';
+$stylesPath = 'styles/';
+$controllersPath = 'controllers/';
+$modelsPath = 'models/';
+$viewsPath = 'views/';
+$pluginsPath = 'plugins/';
+$mediaPath = 'media/';
+$otherpluginsPath = 'otherplugs/';
+/*-----------------------------------------------------------------------------------------------*/
+/*
+sets the extension type for files specified
+*/
+
+$EXT = '.php';
+$controllerPrefix = 'CO_';
+$modelPrefix = 'MOD_';
+$viewPrefix = 'VI_';
+
+/*-----------------------------------------------------------------------------------------------*/
+require_once($corePath.'eps_baseloader.php');
+require_once($corePath.'eps_base.php');
+/*error module needs to be called first followed by db, the rest of the classes can be called after 
+then */
+$basemods = array(
+					'eps_error',
+					'eps_db',
+					'eps_sessionControl',
+					'eps_router',
+					'eps_loader'
+				);
+
+/*
+declares variable names to hold objects that will be instantiated by the baseLoader script. The 
+variables will have the same name as the class and will only be instantiated once.
+*/
+
+foreach($basemods as $mod)
+{
+	$temp = $mod;
+	$$temp = FALSE;
+}
+
+/*
+Object names:
+error object = eps_error
+database object = eps_db
+session Control Object = eps_sessionControl
+router object = eps_router
+*/				
+loadbaseclass();
+
+
+$eps_router->determine();
+$curController = $eps_loader->loadController();
+
+//$eps_router->loadController();
+
+
+
+
+
 ?>
-
-
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="keywords" content="project colloboration, project management, epselon, project host, event colloboration, event management "/>
-	<meta name="description" content="Epselon is an online colloboration and project management application, which allows people around the world to host projects or events and to colloborate with each other.
-	People use it to stay on top of their work, and to promote a higher level of seamless teamwork and wider exposure to their work."/>
-	<title>EPSELON|Home</title>
-	<link rel="shortcut icon" href="img/icon.png"/>
-	<link rel="stylesheet" href="/style/front.css" type="text/css" media="screen" charset="utf-8"/>
-	<script type="text/javascript"  src="/scripts/jQuery.js"></script>
-	<script type="text/javascript"  src="/scripts/front.js"></script>
-</head>
-
-<body>
-	<div id="wrapper">
-		<div class="head">
-		<img src="/img/logo.png" alt = "epselon"/>
-		</div>
-		<div class="cont">
-			<div class="box">
-				<div class="box_in">
-					<div class="feed">
-					<?php
-					session_start();
-					if(isset($_SESSION['error']))
-					{
-						if ($_SESSION['error']==1)
-						{
-							echo 'Username/Password Incorrect';
-						}
-					session_destroy();
-					}
 					
-					?>
-					</div>
-					<form action="/lib/login.php" method="post">
-					Username</br>
-					<input name="usr" type="text"/></br>
-					Password</br>
-					<input  name="pass" type="password"/></br>
-					<input class="big" value="Login" type="submit"/>
-					</form>
-					</br>
-					<a href="forgot.php">Forgot Username/Password</a></br>
-					Would You like to join us?<a href="register.php">Register</a>
-				</div>
-			</div>
-			<div class="explore"><a href="explore.php">EXPLORE</a></div>
-		</div>
-	</div>
-</body>
-
-</html>
-

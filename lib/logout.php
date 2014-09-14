@@ -4,10 +4,10 @@
 /*script is used to logout a user*/
 //will need modification and advanced detection systems 
 session_start();
-if(isset($_SESSION['user']))
+if(isset($_SESSION['name']))
 {	
 
-	$_SESSION['user']=NULL;
+//	$_SESSION['']=NULL;
 	session_destroy();
 	
 }

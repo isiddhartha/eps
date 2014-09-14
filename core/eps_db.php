@@ -10,12 +10,19 @@
 
 
 //change db into a class<--
-class db
+class eps_db extends eps_base
 {
-	private $resDb;
+	public $resDb;
+	public $status;
+	
+	
 	function __construct()
 	{
+	/*	global  $eps_error;
+		$this->error = $eps_error;*/
+		parent::initializeCore();
 		$this->connect();
+		$this->status = TRUE;
 	}
 	
 	private function connect()
@@ -23,7 +30,7 @@ class db
 	@ $this->resDb = new mysqli(HOST,USER,PASSWORD,DB) or die($error=new errormod('db_connect')) ;
 				if ($this->resDb->connect_errno)
 				{	
-					$error = new errormod('db_connect');
+					$this->error->error(1501);
 					exit();
 				}
 				
@@ -36,7 +43,7 @@ class db
 			return $this->resDb;
 		}
 		else
-		$error= new errormod('db_drop');
+			$this->error->error(1502);
 	}
 	
 	public function dbDet($res)
@@ -56,6 +63,11 @@ class db
 				break;
 		}
 		return $temp;
+	}
+	
+	public function dbClose()
+	{
+		$this->resDb->close();
 	}
 }
 ?>
