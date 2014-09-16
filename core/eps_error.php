@@ -35,7 +35,8 @@ class eps_error extends eps_base
 									);
 		$this->userError = array(
 									1001=>"Class Not Defined",
-									1002=>"Path Error"
+									1002=>"Path Error",
+									1003=>"File not found"
 									);
 		$this->techError = array(
 									1501=>"Database Connection Failed",

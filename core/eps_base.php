@@ -15,6 +15,8 @@ abstract class eps_base
 	protected $controllersPath;
 	protected $modelsPath;
 	protected $viewsPath;
+	protected $scriptsPath;
+	protected $stylesPath;
 	protected $EXT;
 	protected $controllerPrefix;
 	protected $modelPrefix;
@@ -44,6 +46,8 @@ The essential objects will be checked if they are available and assinged to the 
 		global $controllersPath;
 		global $modelsPath;
 		global $viewsPath;
+		global $scriptsPath;
+		global $stylesPath;
 		global $EXT;
 		global $controllerPrefix;
 		global $modelPrefix;
@@ -55,6 +59,8 @@ The essential objects will be checked if they are available and assinged to the 
 		$this->controllersPath = $controllersPath;
 		$this->modelsPath = $modelsPath;
 		$this->viewsPath = $viewsPath;
+		$this->scriptsPath = $scriptsPath;
+		$this->stylesPath = $stylesPath;
 		$this->EXT = $EXT;
 		$this->controllerPrefix = $controllerPrefix;
 		$this->modelPrefix = $modelPrefix;
@@ -96,6 +102,8 @@ The essential objects will be checked if they are available and assinged to the 
 		global $controllersPath;
 		global $modelsPath;
 		global $viewsPath;
+		global $scriptsPath;
+		global $stylesPath;
 		global $EXT;
 		
 		global $controllerPrefix;
@@ -107,6 +115,8 @@ The essential objects will be checked if they are available and assinged to the 
 		$this->controllersPath = $controllersPath;
 		$this->modelsPath = $modelsPath;
 		$this->viewsPath = $viewsPath;
+		$this->scriptsPath = $scriptsPath;
+		$this->stylesPath = $stylesPath;
 		$this->EXT = $EXT;
 		$this->controllerPrefix = $controllerPrefix;
 		$this->modelPrefix = $modelPrefix;

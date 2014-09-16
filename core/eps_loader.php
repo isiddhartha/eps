@@ -147,16 +147,35 @@ Method will be invoked by the super script to load a controller and return the o
 		}
 	}
 
-	public function & loadView($viewName)
+	public function loadView($viewName,$argv)
 	{
 		if($viewName)
 		{
-			$this->viewName = $viewName;
 			if(is_dir($this->viewsPath))
 			{
-				$view = $this->viewsPath.$this->viewName.$this->EXT;
-				//file read functions to be called and obtain content of view file as a string
+				$view = $this->viewsPath.$this->viewPrefix.$viewName.$this->EXT;
 				
+				if(file_exists($view))
+				{
+					if(is_array($argv))
+					{
+						foreach($argv as $key=>$value)
+						{
+							$$key = $value;
+						}
+					}
+					else
+					{
+						$default = $argv;
+					}
+					ob_start();
+					include($view);
+					ob_end_flush();
+				}
+				else
+				{
+					$this->error->error(1003);
+				}
 			}
 			else
 			{
@@ -174,6 +193,64 @@ Method will be invoked by the super script to load a controller and return the o
 	{
 	}
 	
+	public function loadScripts($scriptName)
+	{
+		if($scriptName)
+		{
+			if(is_dir($this->scriptsPath))
+			{
+				$script = $this->scriptsPath.$scriptName;
+				//file read functions to be called and obtain content of view file as a string
+				if(file_exists($script))
+				{
+					$string = '<script type="text/javascript"  src="'.$script.'"></script>';
+					return $string;
+				}
+				else
+				{
+					$this->error->error(1003);
+				}
+			}
+			else
+			{
+				$this->error->error(1002);
+			}
+		}
+		else
+		{
+			$this->error->error(400);
+		}
+	}
+	
+	public function loadStylesheets($styleName, $media = 'screen')
+	{
+		if($styleName)
+		{
+			if(is_dir($this->stylesPath))
+			{
+				$style = $this->stylesPath.$styleName;
+				//file read functions to be called and obtain content of view file as a string
+				if(file_exists($style))
+				{
+					$string = '<link rel="stylesheet" href="'.$style.
+								'" type="text/css" media="'.$media.'" charset="utf-8"/>';
+					return $string;
+				}
+				else
+				{
+					$this->error->error(1003);
+				}
+			}
+			else
+			{
+				$this->error->error(1002);
+			}
+		}
+		else
+		{
+			$this->error->error(400);
+		}
+	}
 	
 }
 

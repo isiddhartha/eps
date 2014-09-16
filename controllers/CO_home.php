@@ -13,9 +13,15 @@ class CO_home extends eps_base
 	//declare status variable optional to hold status of controller object
 	public $status;
 	
-	//assign property to hold model and view objects local to the controller class
+	//assign property to hold model object local to the controller class
 	private $curModel;
-	private $curView;
+	
+	private $scripts;
+	private $stylesheets;
+	private $httpHeader;
+	private $htmlHeader;
+	private $htmlFooter;
+	private $pageBody;
 	
 	public function __construct($routerArray)
 	{
@@ -26,39 +32,47 @@ class CO_home extends eps_base
 		//assign model and view object variable after loading them using loader component
 		//ex : $this->currentModel = $this->loader->loadModel('modelName');
 		$this->curModel = $this->loader->loadModel('home');
-		//ex : $this->currentView = $this->loader->loadModel('viewName');
-		$this->curView = $this->loader->loadView('home');
+		
+		//echo $this->loader->loadView('home');
 		//set status as TRUE to indicate controller is functional (optional)
 		$this->status = TRUE;
-		
-		//call all methods that need to start functioning by default
 		$this->controllerProcess();
+		//call all methods that need to start functioning by default
+	;
 	}
 	
 	private function controllerProcess()
 	{
 		$userData = $this->routerArray;
+		$out =NULL;
 		if(sizeof($userData) == 1)
 		{
-			$this->curModel->populate();
-			$this->loadScripts();
-			$this->loadStylesheets();
-			$this->createHeader();
-			$this->htmlHeader();
-			$this->pageBody();
-			$this->htmlFooter();
-			$this->display();
+			if(isset($_SESSION['error']))
+			{
+				if ($_SESSION['error']==1)
+				{
+					$out =  'Username/Password Incorrect';
+				}
+			}
+					
+			$argv = array("out"=>$out);
+			$this->display($argv);
+			//$this->curModel->populate();
+			//$this->loadScripts();
+			//$this->loadStylesheets();
+			//$this->createHeader();
+			//$this->htmlHeader();
+			//$this->pageBody();
+			//$this->htmlFooter();
+			//$this->display();
+			
 		}
 		else
 		{
-			$this->curModel->populate($userData);
+			//$this->curModel->populate($userData);
 			$this->loadScripts();
 			$this->loadStylesheets();
-			$this->createHeader();
-			$this->htmlHeader();
-			$this->pageBody();
-			$this->htmlFooter();
-			$this->display();
+			
 		}
 	}
 	//loads the javascripts for the particular page
@@ -66,12 +80,47 @@ class CO_home extends eps_base
 	{
 	//load jQuery by default unless minimal javascript is used in the page
 	//
+		$this->scripts = NULL;
+		$this->scrpits .= $this->loader->loadScripts('jquery.js');
+		$this->scrpits .= $this->loader->loadScripts('front.js');
+		return $this->scripts;
+		
 	}
 	//loads stylesheets for the particular page
 	private function loadStylesheets()
 	{
 	//load basic stylesheet
 	//
+		$this->stylesheets = NULL;
+		$this->stylesheets .= $this->loader->loadStylesheets('front.css');
+		return $this->stylesheets;
 	}
+	
+	private function createHeader($argh)
+	{
+		$string = NULL;
+		foreach($argh as $key=>$value)
+		{
+			$$key = $value;
+		}
+		$string = "<head>";
+		$string = $string."<title>".$title."</title>";
+		$string .= $this->loadStylesheets();
+		$string .= $this->loadScripts();
+		$string .= "</head>";
+		return $string;
+	}
+	
+	private function display($argv)
+	{
+		$argh = array("title"=>"EPSELON");
+		echo "<html>";
+		echo $this->createHeader($argh);
+		
+		$this->loader->loadView('home',$argv);
+		echo "</html>";
+	}
+	
+	
 }
 ?>

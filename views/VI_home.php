@@ -5,10 +5,10 @@ AUTHOR			:	Siddhartha Chandrasekar
 CREATED			:	13/09/2014
 LOCATION		:	views/
 DESCRIPTION		:	This is the view script for home. Will be called by the home controller.
-					TO BE EDITED
+					Create content only starting from the body
 */
 ?>
-
+<!--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -23,7 +23,7 @@ DESCRIPTION		:	This is the view script for home. Will be called by the home cont
 	<script type="text/javascript"  src="/scripts/jQuery.js"></script>
 	<script type="text/javascript"  src="/scripts/front.js"></script>
 </head>
-
+-->
 <body>
 	<div id="wrapper">
 		<div class="head">
@@ -33,18 +33,7 @@ DESCRIPTION		:	This is the view script for home. Will be called by the home cont
 			<div class="box">
 				<div class="box_in">
 					<div class="feed">
-					<?php
-					session_start();
-					if(isset($_SESSION['error']))
-					{
-						if ($_SESSION['error']==1)
-						{
-							echo 'Username/Password Incorrect';
-						}
-					session_destroy();
-					}
-					
-					?>
+					<?php echo $out; ?>
 					</div>
 					<form action="/lib/login.php" method="post">
 					Username</br>
