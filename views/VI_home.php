@@ -1,29 +1,4 @@
-<?
-/*
-SCRIPT NAME		:	VI_home.php
-AUTHOR			:	Siddhartha Chandrasekar
-CREATED			:	13/09/2014
-LOCATION		:	views/
-DESCRIPTION		:	This is the view script for home. Will be called by the home controller.
-					Create content only starting from the body
-*/
-?>
-<!--
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="keywords" content="project colloboration, project management, epselon, project host, event colloboration, event management "/>
-	<meta name="description" content="Epselon is an online colloboration and project management application, which allows people around the world to host projects or events and to colloborate with each other.
-	People use it to stay on top of their work, and to promote a higher level of seamless teamwork and wider exposure to their work."/>
-	<title>EPSELON|Home</title>
-	<link rel="shortcut icon" href="img/icon.png"/>
-	<link rel="stylesheet" href="/styles/front.css" type="text/css" media="screen" charset="utf-8"/>
-	<script type="text/javascript"  src="/scripts/jQuery.js"></script>
-	<script type="text/javascript"  src="/scripts/front.js"></script>
-</head>
--->
 <body>
 	<div id="wrapper">
 		<div class="head">

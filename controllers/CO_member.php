@@ -1,14 +1,14 @@
-<?php
+﻿<?php
 /*
-SCRIPT NAME		:	CO_home.php
+SCRIPT NAME		:	CO_member.php
 AUTHOR			:	Siddhartha Chandrasekar
-CREATED			:	09/09/2014
+CREATED			:	22/09/2014
 LOCATION		:	controllers/
-DESCRIPTION		:	This is the controller script for the home page of the site.
+DESCRIPTION		:	This is the controller script for the member page of the site.
 					TO BE EDITED
 */
 //class CO_clasname extends eps_base
-class CO_home extends eps_base
+class CO_member extends eps_base
 {
 	//declare status variable optional to hold status of controller object
 	public $status;

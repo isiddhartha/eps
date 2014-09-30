@@ -170,7 +170,7 @@ Method will be invoked by the super script to load a controller and return the o
 					}
 					ob_start();
 					include($view);
-					ob_end_flush();
+					ob_end_flush();		
 				}
 				else
 				{
@@ -189,10 +189,6 @@ Method will be invoked by the super script to load a controller and return the o
 		
 	}
 
-	public function loadLibraryClass()
-	{
-	}
-	
 	public function loadScripts($scriptName)
 	{
 		if($scriptName)
@@ -203,8 +199,8 @@ Method will be invoked by the super script to load a controller and return the o
 				//file read functions to be called and obtain content of view file as a string
 				if(file_exists($script))
 				{
-					$string = '<script type="text/javascript"  src="'.$script.'"></script>';
-					return $string;
+					$str = '<script type="text/javascript"  src="/'.$script.'"></script>';
+					return $str;
 				}
 				else
 				{
@@ -232,7 +228,7 @@ Method will be invoked by the super script to load a controller and return the o
 				//file read functions to be called and obtain content of view file as a string
 				if(file_exists($style))
 				{
-					$string = '<link rel="stylesheet" href="'.$style.
+					$string = '<link rel="stylesheet" href="/'.$style.
 								'" type="text/css" media="'.$media.'" charset="utf-8"/>';
 					return $string;
 				}
