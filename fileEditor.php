@@ -18,54 +18,41 @@
 			File Structure:</br>
 			<?php
 
-				$parent = dirname(__FILE__); 
+				$parent = realpath(dirname(__FILE__)); //derives real path of root directory, where
+													//where this file is located
 				
-				$dp=opendir($parent);
-				$counter = 1;
-				while($fp = readdir($dp))
+				$dr=opendir($parent);//opens the root directory and returns handle
+				
+				
+//recursive function which populates the directory structure in lost format
+				function extract($handle)
 				{
-					if(!is_dir($fp))
+					static $nest = 0;
+					$nest++;
+					if($nest<=10)
 					{
-						echo $counter. " ". $fp."</br>";
-						$counter++;
-					}	
-					else
-					{
-
-						if($fp!="." && $fp!= ".." && $fp != ".git")
-						{	
-							echo $counter. " ". $fp;
-							dig($fp);	
-							$counter++;
-						}	
-					}
-				}
-
-				function dig($path)
-				{
-					$counter=1;
-					$dp=opendir($path);
-					echo "<ol>";
-					while($fp = readdir($dp))
-					{
-							
-						if(!is_dir($fp))
+						$dr=opendir($handle);//opens the path in hand
+						echo "<ul>";	//creates new list
+						while($fp = readdir($dr)) //if not end of directory then continue with next entry
 						{
-							echo "<li> ".$counter." " .$fp."</li>";
-							$counter++;
-						}	
-						else
-						{
-							if($fp!="." && $fp!= ".." && $fp != ".git")
-							{	
-								echo $counter. " ". $fp;
-								dig($fp);	
-								$counter++;
+							if(!is_dir($fp))
+							{
+								echo "<li>".$fp."</li>"; //file entry
+							}	
+							else
+							{//if it is a directory then use the recursive function
+								if($fp!="." && $fp!= ".." && $fp != ".git")
+								{	
+									extract($fp);	
+								}
 							}
 						}
-						
+						echo "</ul>"; //close list
 					}
-					echo "</ol>";
+					else
+					{
+						echo "Nested Directory is too deep";
+					}
 				}
 			?>
 			<form action="fileEditor.php" method="post">
