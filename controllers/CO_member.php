@@ -97,8 +97,8 @@ class CO_member extends eps_base
 		$this->stylesheets .= $this->loader->loadStylesheets('front.css');
 		return $this->stylesheets;
 	}
-	
 	private function createHeader($argh)
+	
 	{
 		$string = "<head>";
 		$string .='<meta http-equiv="content-type" content = "text/html; charset = UTF-8">';
